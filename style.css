@@ -1,1 +1,67 @@
-body{margin:0;background:#f5f7f4;color:#0f172a;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}a{color:#6b8e8b;text-decoration:none;border-bottom:1px solid rgba(107,142,139,.35);}a:hover{border-bottom:1px solid rgba(107,142,139,.95);} .container{max-width:1120px;padding:24px;margin:0 auto;}header{padding:24px 0;border-bottom:1px solid rgba(99,102,106,.18);}nav{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;}nav a{border-bottom:none;color:#6b8e8b;}nav a:hover{border-bottom:none;text-decoration:underline;} .hero{display:flex;align-items:center;gap:24px;padding:36px 0;}@media (max-width:900px){.hero{flex-direction:column;} .hero-photo{width:220px;}} .hero-photo{width:240px;border-radius:18px;border:1px solid rgba(125,133,139,.25);}h1{font-size:44px;margin:10px 0 6px;}h2{margin:0;font-weight:700;color:#111827;}h3{margin:0 0 16px;font-weight:500;color:#334155;} .lede{font-size:16px;color:#334155;max-width:70ch;margin:18px 0;} .section{margin-top:52px;} .section-title{font-weight:750;font-size:14px;color:#0f172a;border-left:4px solid rgba(107,142,139,.9);padding-left:12px;margin:0 0 18px;} .card-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));} .card{background:#fff;border:1px solid rgba(148,163,184,.35);border-radius:16px;padding:18px;box-shadow:0 18px 40px rgba(15,23,42,.06);} .card h3{margin-top:0;font-size:18px;} .card p{margin:10px 0 0;color:#475569;} .case-meta{margin-top:18px;padding-top:18px;border-top:1px solid rgba(148,163,184,.35);display:flex;flex-wrap:wrap;gap:16px;color:#475569;} .screenshot-placeholder{margin-top:10px;border:1px dashed rgba(148,163,184,.9);border-radius:16px;padding:30px;text-align:center;color:#64748b;background:linear-gradient(to bottom,#f8fafc,#f1f5f9);} .footer{margin-top:56px;padding:24px;border-top:1px solid rgba(148,163,184,.35);color:#94a3b8;text-align:center;}
+:root{
+  --bg:#f5f7f4;
+  --text:#0f172a;
+  --muted:#334155;
+  --muted2:#475569;
+  --line:rgba(148,163,184,.35);
+  --accent:#6b8e8b;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7;
+}
+
+.container{max-width:1120px;padding:28px;margin:0 auto;}
+
+header{padding:26px 0;border-bottom:1px solid rgba(99,102,106,.16);}
+nav{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;}
+nav a{color:var(--accent);text-decoration:none;border-bottom:none;}
+nav a:hover{text-decoration:underline;}
+
+.hero{display:flex;align-items:center;gap:28px;padding:40px 0;}
+.hero-copy{min-width:280px;}
+.hero-photo{
+  width:220px;height:220px;
+  border-radius:26px;
+  border:1px solid rgba(125,133,139,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:60px;
+  background:linear-gradient(to bottom,#f1f5f9,#e2e8f0);
+  color:var(--accent);
+  box-shadow:0 30px 60px rgba(15,23,42,.05);
+}
+@media(max-width:900px){.hero{flex-direction:column;}.hero-photo{width:220px;height:220px;}}
+
+h1{font-size:44px;margin:0 0 8px;}
+h3{margin:10px 0 18px;font-weight:500;color:var(--muted);}
+.lede{font-size:16px;color:var(--muted);max-width:72ch;margin:0;}
+
+.section{margin-top:64px;}
+.section-title{
+  font-weight:750;font-size:14px;color:var(--text);
+  border-left:4px solid rgba(107,142,139,.9);
+  padding-left:12px;
+  margin:0 0 22px;
+}
+
+.card-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;
+  box-shadow:0 22px 44px rgba(15,23,42,.05);
+}
+.card p{margin:12px 0 0;color:var(--muted2);}
+
+.project-visual{
+  width:100%;height:124px;border-radius:14px;margin-top:12px;
+  box-shadow:inset 0 0 0 1px rgba(148,163,184,.25);
+  background:linear-gradient(135deg,rgba(107,142,139,.18),rgba(148,163,184,.15));
+}
+
+.case-meta{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:18px;color:var(--muted2);}
+.screenshot-placeholder{margin-top:12px;border:1px dashed rgba(148,163,184,.9);border-radius:16px;padding:36px;text-align:center;color:#64748b;background:linear-gradient(to bottom,#f8fafc,#f1f5f9);}
+
+.footer{margin-top:64px;padding:26px;border-top:1px solid var(--line);color:#94a3b8;text-align:center;}
