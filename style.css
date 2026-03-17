@@ -198,35 +198,38 @@ img {
   }
 }
 
-/* ── Before / After screenshots ── */
-.before-after{
+/* ── Before / After table ── */
+.ba-table{
   display:flex;
-  gap:20px;
-  justify-content:flex-start;
+  justify-content:center;
 }
-.before-after-item{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  width:200px;
-  flex-shrink:0;
+.ba-table table{
+  border-collapse:separate;
+  border-spacing:16px 0;
 }
-.before-after-label{
+.ba-table th{
   font-size:12px;
   font-weight:600;
   letter-spacing:.06em;
   text-transform:uppercase;
   color:var(--muted2);
+  text-align:center;
+  padding-bottom:10px;
 }
-.before-after-item img{
-  width:100%;
+.ba-table td{
+  vertical-align:top;
+}
+.ba-table td img{
+  width:220px;
+  display:block;
   border-radius:14px;
   border:1px solid var(--line);
   box-shadow:0 8px 24px rgba(15,23,42,.07);
 }
-@media(max-width:700px){
-  .before-after{ flex-direction:column; }
-  .before-after-item{ width:100%; }
+@media(max-width:600px){
+  .ba-table table{ border-spacing:0; }
+  .ba-table tr{ display:flex; flex-direction:column; gap:24px; }
+  .ba-table td img{ width:100%; }
 }
 
 /* ── Checklist ── */
