@@ -245,22 +245,22 @@ img {
 }
 
 /* Card 1 — Red */
-.pv--red{ background:linear-gradient(145deg,#fff0ee,#ffddd8); }
-.pv--red::before{ width:110px;height:110px;background:#e84545;opacity:.12;top:-28px;right:-20px; }
-.pv--red::after{  width:60px; height:60px; background:#e84545;opacity:.10;bottom:-16px;left:24px; }
-.pv--red .card-num{ color:#e84545; }
+.pv--red{ background:linear-gradient(145deg,#faf7f7,#f5efef); }
+.pv--red::before{ width:110px;height:110px;background:#c0a0a0;opacity:.10;top:-28px;right:-20px; }
+.pv--red::after{  width:60px; height:60px; background:#c0a0a0;opacity:.07;bottom:-16px;left:24px; }
+.pv--red .card-num{ color:#a06060; }
 
 /* Card 2 — Blue */
-.pv--blue{ background:linear-gradient(145deg,#eef3ff,#d8e5ff); }
-.pv--blue::before{ width:130px;height:130px;background:#2f6ff0;opacity:.10;bottom:-36px;left:-24px; }
-.pv--blue::after{  width:50px; height:50px; background:#2f6ff0;opacity:.12;top:14px;right:20px; }
-.pv--blue .card-num{ color:#2f6ff0; }
+.pv--blue{ background:linear-gradient(145deg,#f6f8fc,#edf1f8); }
+.pv--blue::before{ width:130px;height:130px;background:#8aa0c8;opacity:.10;bottom:-36px;left:-24px; }
+.pv--blue::after{  width:50px; height:50px; background:#8aa0c8;opacity:.08;top:14px;right:20px; }
+.pv--blue .card-num{ color:#5a7aaa; }
 
 /* Card 3 — Yellow */
-.pv--yellow{ background:linear-gradient(145deg,#fffbea,#fff0b0); }
-.pv--yellow::before{ width:100px;height:100px;background:#d4900a;opacity:.12;top:-24px;left:50%;transform:translateX(-50%); }
-.pv--yellow::after{  width:55px; height:55px; background:#d4900a;opacity:.10;bottom:-10px;right:18px; }
-.pv--yellow .card-num{ color:#c17f0a; }
+.pv--yellow{ background:linear-gradient(145deg,#faf9f4,#f5f0e4); }
+.pv--yellow::before{ width:100px;height:100px;background:#b8a060;opacity:.10;top:-24px;left:50%;transform:translateX(-50%); }
+.pv--yellow::after{  width:55px; height:55px; background:#b8a060;opacity:.08;bottom:-10px;right:18px; }
+.pv--yellow .card-num{ color:#9a7e3a; }
 
 .card-num{
   font-family:'Fredoka One', cursive;
