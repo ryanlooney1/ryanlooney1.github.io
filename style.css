@@ -200,14 +200,16 @@ img {
 
 /* ── Before / After screenshots ── */
 .before-after{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
   gap:20px;
+  justify-content:flex-start;
 }
 .before-after-item{
   display:flex;
   flex-direction:column;
   gap:10px;
+  width:200px;
+  flex-shrink:0;
 }
 .before-after-label{
   font-size:12px;
@@ -223,7 +225,33 @@ img {
   box-shadow:0 8px 24px rgba(15,23,42,.07);
 }
 @media(max-width:700px){
-  .before-after{ grid-template-columns:1fr; }
+  .before-after{ flex-direction:column; }
+  .before-after-item{ width:100%; }
+}
+
+/* ── Checklist ── */
+.checklist{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:.75rem;
+}
+.checklist li{
+  padding:.85rem 1rem .85rem 2.75rem;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.55);
+  font-weight:500;
+  color:var(--text);
+  position:relative;
+}
+.checklist li::before{
+  content:"✓";
+  position:absolute;
+  left:1rem;
+  color:var(--accent);
+  font-weight:700;
 }
 
 /* ── CTA preview visual ── */
