@@ -626,6 +626,13 @@ img{
   line-height:1.5;
 }
 
+/* ── Case study nav (Home / Next) ── */
+.case-nav{
+  display:flex;
+  justify-content:space-between;
+  margin:0 0 8px;
+}
+
 /* ── Case study meta line ── */
 .case-meta{
   font-size:12px;
