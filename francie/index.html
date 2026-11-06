@@ -48,8 +48,8 @@
   main { max-width: 640px; margin: 0 auto; padding: 56px 20px 80px; }
   header { text-align: center; margin-bottom: 40px; }
   .portrait {
-    width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 14px;
-    object-fit: cover; display: block; margin: 0 auto 32px;
+    width: min(960px, calc(100vw - 32px)); height: auto; border-radius: 14px;
+    display: block; margin: 0 0 32px 50%; transform: translateX(-50%);
     box-shadow: 0 2px 18px rgba(0,0,0,.10);
   }
   h1 {
@@ -184,7 +184,7 @@
      ============================================================ */
   const CONFIG = {
     dates: "",      // e.g. "1948 – 2026"  (leave "" to hide)
-    portrait: "family.jpg",
+    portrait: "francie-photos.jpg",
     scriptUrl: "https://script.google.com/macros/s/AKfycbyYZbSCilx3QTBKB1hr_et8Hz3CQNXriunpcagJNqoewsTRn7B1EsFn-ELbykuREdJJ/exec",
     maxPhotos: 3,
     maxEdge: 2400   // long side in pixels; enough for an 8" print at 300 dpi
@@ -192,7 +192,7 @@
 
   const $ = (id) => document.getElementById(id);
   if (CONFIG.dates) { $("dates").textContent = CONFIG.dates; $("dates").hidden = false; }
-  if (CONFIG.portrait) { $("portrait").src = CONFIG.portrait; $("portrait").alt = "Francie Chandler with her family"; $("portrait").hidden = false; }
+  if (CONFIG.portrait) { $("portrait").src = CONFIG.portrait; $("portrait").alt = "Three photos of Francie Chandler with her family"; $("portrait").hidden = false; }
   const connected = /^https:\/\/script\.google\.com\/.+\/exec$/.test(CONFIG.scriptUrl.trim());
   if (!connected) $("notice").hidden = false;
 
