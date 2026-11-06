@@ -177,8 +177,6 @@
   <section class="card thanks" id="thanks" hidden>
     <h2>Thank you so, so much.</h2>
     <p>We'll share the finished product when we have it ready.</p>
-    <p class="signoff">With love,<br>Francie's family</p>
-    <button class="link" id="another" type="button">Share another memory</button>
   </section>
 
   <footer id="footer">With love, Francie's family</footer>
@@ -354,12 +352,6 @@
   function showError(msg) { status.textContent = msg; status.classList.add("error"); }
   function clearStatus() { status.textContent = ""; status.classList.remove("error"); }
 
-  $("another").addEventListener("click", () => {
-    $("thanks").hidden = true;
-    $("formCard").hidden = false;
-    $("footer").hidden = false;
-    $("name").focus();
-  });
 </script>
 </body>
 </html>
