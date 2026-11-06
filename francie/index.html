@@ -134,53 +134,31 @@
   <section class="card" id="formCard">
     <form id="form" novalidate>
       <div class="field">
-        <label for="name">Your name
-          <span class="hint">As you'd like it to appear in the book.</span>
-        </label>
+        <label for="name">Name</label>
         <input id="name" name="name" type="text" autocomplete="name" required maxlength="200">
       </div>
 
       <div class="field">
-        <label for="relationship">How you knew Francie
-          <span class="hint">Optional. For example: "Her neighbor for 30 years" or "Granddaughter."</span>
+        <label for="memory">Your stories and memories
+          <span class="hint">We love reading them all!</span>
         </label>
-        <input id="relationship" name="relationship" type="text" maxlength="300">
-      </div>
-
-      <div class="field">
-        <label for="memory">Your story or memory</label>
-        <ul class="prompts">
-          <li>A moment you think of when you think of her</li>
-          <li>Something she used to say, or always did</li>
-          <li>A time she made you laugh, or helped you</li>
-        </ul>
         <textarea id="memory" name="memory" required maxlength="20000"></textarea>
-        <span class="hint">Write as much or as little as you like. Your writing is saved on this device until you send it.</span>
       </div>
 
       <div class="field">
-        <span class="label">Photos of Francie
-          <span class="hint">Optional. Up to 3. Only the family will see them.</span>
+        <span class="label">Add photos
+          <span class="hint">This is optional, but we'd love to see any.</span>
         </span>
         <label class="photo-pick" id="pickLabel">
-          <span aria-hidden="true">+</span> <span id="pickText">Add photos</span>
+          <span aria-hidden="true">+</span> <span id="pickText">Choose photos</span>
           <input id="photos" type="file" accept="image/*" multiple>
         </label>
         <div class="thumbs" id="thumbs"></div>
       </div>
 
       <div class="field">
-        <label for="email">Your email
-          <span class="hint">Optional. Only the family will see it, in case we have a question about your story.</span>
-        </label>
+        <label for="email">Your email</label>
         <input id="email" name="email" type="email" autocomplete="email" maxlength="200">
-      </div>
-
-      <div class="field">
-        <label class="check">
-          <input id="book" name="book" type="checkbox" checked>
-          <span>The family may include my story and photos in the book.</span>
-        </label>
       </div>
 
       <div class="hp" aria-hidden="true">
@@ -196,8 +174,8 @@
   </section>
 
   <section class="card thanks" id="thanks" hidden>
-    <h2>Thank you</h2>
-    <p>Your memory has been sent to the family.</p>
+    <h2>Thank you so, so much.</h2>
+    <p>We'll share the finished product when we have it ready.</p>
     <button class="link" id="another" type="button">Share another memory</button>
   </section>
 
@@ -224,7 +202,7 @@
 
   /* ---------- draft saving (text only, this device only) ---------- */
   const DRAFT_KEY = "francie-memory-draft-v1";
-  const draftFields = ["name", "relationship", "memory", "email"];
+  const draftFields = ["name", "memory", "email"];
   function saveDraft() {
     try {
       const d = {};
@@ -281,7 +259,7 @@
     });
     const full = photos.length >= CONFIG.maxPhotos;
     $("pickLabel").hidden = full;
-    $("pickText").textContent = photos.length ? "Add another photo" : "Add photos";
+    $("pickText").textContent = photos.length ? "Add another photo" : "Choose photos";
   }
 
   function loadImage(file) {
@@ -327,17 +305,16 @@
     const name = $("name").value.trim();
     const memory = $("memory").value.trim();
     if (!name) { showError("Please add your name."); $("name").focus(); return; }
-    if (!memory) { showError("Please write a story or memory before sending."); $("memory").focus(); return; }
+    if (!memory) { showError("Please share a story or memory before sending."); $("memory").focus(); return; }
     if (!connected) { showError("Preview mode: not connected to the spreadsheet yet."); return; }
 
     $("submit").disabled = true;
     try {
       const body = new URLSearchParams({
         name,
-        relationship: $("relationship").value.trim(),
         memory,
         email: $("email").value.trim(),
-        book: $("book").checked ? "yes" : "no",
+        book: "yes",
         website: $("website").value,
         photoCount: String(photos.length)
       });
@@ -356,7 +333,6 @@
 
       clearDraft();
       $("form").reset();
-      $("book").checked = true;
       photos = [];
       renderThumbs();
       clearStatus();
