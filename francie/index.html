@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Remembering Francie Chandler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf6ef;
+    --card: #ffffff;
+    --ink: #2b2622;
+    --muted: #6f655c;
+    --line: #e6ddd0;
+    --accent: #7a5c45;
+    --accent-ink: #ffffff;
+    --focus: #b08968;
+    --warn-bg: #fff4e0;
+    --warn-ink: #7a4b00;
+    --err: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1d1a17;
+      --card: #26221e;
+      --ink: #efe8de;
+      --muted: #b3a798;
+      --line: #3a342e;
+      --accent: #c9a27e;
+      --accent-ink: #1d1a17;
+      --focus: #e0bf9c;
+      --warn-bg: #3a2e1c;
+      --warn-ink: #f1d3a0;
+      --err: #f2b8b5;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 18px/1.6 "Source Sans 3", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 56px 20px 80px; }
+  header { text-align: center; margin-bottom: 40px; }
+  .portrait {
+    width: 168px; height: 168px; border-radius: 50%;
+    object-fit: cover; display: block; margin: 0 auto 24px;
+    border: 4px solid var(--card); box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  }
+  h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 600; font-size: 46px; line-height: 1.1;
+    margin: 0 0 6px; letter-spacing: .2px; text-wrap: balance;
+  }
+  .dates { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 21px; color: var(--muted); margin: 0; }
+  .intro { margin: 24px auto 0; max-width: 520px; text-wrap: pretty; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px 24px; }
+  label, .label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .hint { display: block; font-weight: 400; font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .field { margin-bottom: 26px; }
+  input[type=text], input[type=email], textarea {
+    width: 100%; font: inherit; color: var(--ink);
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  textarea { min-height: 260px; resize: vertical; line-height: 1.65; }
+  input:focus, textarea:focus { outline: 2px solid var(--focus); outline-offset: 1px; border-color: transparent; }
+  .prompts { font-size: 15px; color: var(--muted); margin: 0 0 10px; padding-left: 18px; }
+  .prompts li { margin: 2px 0; }
+
+  .photo-pick {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: inherit; font-weight: 600; color: var(--accent);
+    background: transparent; border: 1.5px dashed var(--accent);
+    border-radius: 10px; padding: 12px 18px; cursor: pointer;
+  }
+  .photo-pick:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .photo-pick input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .thumbs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+  .thumb { position: relative; width: 104px; }
+  .thumb img, .thumb .noprev {
+    width: 104px; height: 104px; border-radius: 8px; object-fit: cover;
+    display: block; border: 1px solid var(--line); background: var(--bg);
+  }
+  .thumb .noprev { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: var(--muted); padding: 6px; word-break: break-all; }
+  .thumb button {
+    position: absolute; top: -8px; right: -8px;
+    width: 28px; height: 28px; border-radius: 50%; padding: 0;
+    background: var(--ink); color: var(--bg); font-size: 16px; line-height: 28px;
+  }
+
+  .check { display: flex; gap: 12px; align-items: flex-start; font-weight: 400; }
+  .check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); flex: none; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  button { font: inherit; font-weight: 600; cursor: pointer; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px; padding: 14px 28px; }
+  button:disabled { opacity: .6; cursor: default; }
+  button.link { background: none; color: var(--accent); padding: 0; text-decoration: underline; }
+  .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .status { font-size: 15px; color: var(--muted); }
+  .error { color: var(--err); }
+  .thanks { text-align: center; padding: 40px 24px; }
+  .thanks h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; font-size: 32px; margin: 0 0 10px; }
+  .notice { background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 12px 16px; font-size: 15px; margin-bottom: 20px; }
+  footer { text-align: center; font-size: 14px; color: var(--muted); margin-top: 32px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 480px) {
+    main { padding-top: 36px; }
+    h1 { font-size: 38px; }
+    .card { padding: 22px 16px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img id="portrait" class="portrait" alt="" hidden>
+    <h1 id="title">Remembering Francie Chandler</h1>
+    <p id="dates" class="dates" hidden></p>
+    <p class="intro">
+      Please share a favorite story, memory, and photo of Francie.
+      We will collect your stories into a book of memories.
+    </p>
+  </header>
+
+  <div id="notice" class="notice" hidden>
+    Preview mode: this page isn't connected to the spreadsheet yet, so nothing will be saved.
+  </div>
+
+  <section class="card" id="formCard">
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="name">Your name
+          <span class="hint">As you'd like it to appear in the book.</span>
+        </label>
+        <input id="name" name="name" type="text" autocomplete="name" required maxlength="200">
+      </div>
+
+      <div class="field">
+        <label for="relationship">How you knew Francie
+          <span class="hint">Optional. For example: "Her neighbor for 30 years" or "Granddaughter."</span>
+        </label>
+        <input id="relationship" name="relationship" type="text" maxlength="300">
+      </div>
+
+      <div class="field">
+        <label for="memory">Your story or memory</label>
+        <ul class="prompts">
+          <li>A moment you think of when you think of her</li>
+          <li>Something she used to say, or always did</li>
+          <li>A time she made you laugh, or helped you</li>
+        </ul>
+        <textarea id="memory" name="memory" required maxlength="20000"></textarea>
+        <span class="hint">Write as much or as little as you like. Your writing is saved on this device until you send it.</span>
+      </div>
+
+      <div class="field">
+        <span class="label">Photos of Francie
+          <span class="hint">Optional. Up to 3. Only the family will see them.</span>
+        </span>
+        <label class="photo-pick" id="pickLabel">
+          <span aria-hidden="true">+</span> <span id="pickText">Add photos</span>
+          <input id="photos" type="file" accept="image/*" multiple>
+        </label>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">Your email
+          <span class="hint">Optional. Only the family will see it, in case we have a question about your story.</span>
+        </label>
+        <input id="email" name="email" type="email" autocomplete="email" maxlength="200">
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input id="book" name="book" type="checkbox" checked>
+          <span>The family may include my story and photos in the book.</span>
+        </label>
+      </div>
+
+      <div class="hp" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="actions">
+        <button type="submit" id="submit">Share my memory</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="card thanks" id="thanks" hidden>
+    <h2>Thank you</h2>
+    <p>Your memory has been sent to the family.</p>
+    <button class="link" id="another" type="button">Share another memory</button>
+  </section>
+
+  <footer>With love, from Francie's family</footer>
+</main>
+
+<script>
+  /* ============================================================
+     CONFIG
+     ============================================================ */
+  const CONFIG = {
+    dates: "",      // e.g. "1948 – 2026"  (leave "" to hide)
+    portrait: "",   // e.g. "francie.jpg" in the same folder (leave "" to hide)
+    scriptUrl: "https://script.google.com/macros/s/AKfycbyYZbSCilx3QTBKB1hr_et8Hz3CQNXriunpcagJNqoewsTRn7B1EsFn-ELbykuREdJJ/exec",
+    maxPhotos: 3,
+    maxEdge: 2400   // long side in pixels; enough for an 8" print at 300 dpi
+  };
+
+  const $ = (id) => document.getElementById(id);
+  if (CONFIG.dates) { $("dates").textContent = CONFIG.dates; $("dates").hidden = false; }
+  if (CONFIG.portrait) { $("portrait").src = CONFIG.portrait; $("portrait").alt = "Francie Chandler"; $("portrait").hidden = false; }
+  const connected = /^https:\/\/script\.google\.com\/.+\/exec$/.test(CONFIG.scriptUrl.trim());
+  if (!connected) $("notice").hidden = false;
+
+  /* ---------- draft saving (text only, this device only) ---------- */
+  const DRAFT_KEY = "francie-memory-draft-v1";
+  const draftFields = ["name", "relationship", "memory", "email"];
+  function saveDraft() {
+    try {
+      const d = {};
+      draftFields.forEach((f) => (d[f] = $(f).value));
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+    } catch (e) {}
+  }
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+    draftFields.forEach((f) => { if (d[f]) $(f).value = d[f]; });
+  } catch (e) {}
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+  draftFields.forEach((f) => $(f).addEventListener("input", saveDraft));
+
+  /* ---------- photos ---------- */
+  let photos = []; // File objects
+  const status = $("status");
+
+  $("photos").addEventListener("change", (ev) => {
+    const picked = Array.from(ev.target.files || []);
+    ev.target.value = "";
+    const room = CONFIG.maxPhotos - photos.length;
+    if (picked.length > room) showError("You can add up to " + CONFIG.maxPhotos + " photos.");
+    else clearStatus();
+    photos = photos.concat(picked.slice(0, Math.max(0, room)));
+    renderThumbs();
+  });
+
+  function renderThumbs() {
+    const box = $("thumbs");
+    box.innerHTML = "";
+    photos.forEach((file, i) => {
+      const wrap = document.createElement("div");
+      wrap.className = "thumb";
+      const img = document.createElement("img");
+      img.alt = "Photo " + (i + 1);
+      const url = URL.createObjectURL(file);
+      img.src = url;
+      img.onload = () => URL.revokeObjectURL(url);
+      img.onerror = () => {
+        const n = document.createElement("div");
+        n.className = "noprev";
+        n.textContent = file.name;
+        wrap.replaceChild(n, img);
+      };
+      const rm = document.createElement("button");
+      rm.type = "button";
+      rm.textContent = "×";
+      rm.setAttribute("aria-label", "Remove photo " + (i + 1));
+      rm.onclick = () => { photos.splice(i, 1); renderThumbs(); };
+      wrap.appendChild(img);
+      wrap.appendChild(rm);
+      box.appendChild(wrap);
+    });
+    const full = photos.length >= CONFIG.maxPhotos;
+    $("pickLabel").hidden = full;
+    $("pickText").textContent = photos.length ? "Add another photo" : "Add photos";
+  }
+
+  function loadImage(file) {
+    return new Promise((res, rej) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); res(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); rej(new Error("decode")); };
+      img.src = url;
+    });
+  }
+  function fileToBase64(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(String(r.result).split(",")[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  }
+  // Shrink big phone photos to print size; fall back to the original file
+  // if this browser can't open it (e.g. some iPhone formats on desktop).
+  async function preparePhoto(file) {
+    try {
+      const img = await loadImage(file);
+      const w = img.naturalWidth, h = img.naturalHeight;
+      const s = Math.min(1, CONFIG.maxEdge / Math.max(w, h));
+      const c = document.createElement("canvas");
+      c.width = Math.round(w * s); c.height = Math.round(h * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      return { type: "image/jpeg", ext: "jpg", data: c.toDataURL("image/jpeg", 0.9).split(",")[1] };
+    } catch (e) {
+      if (file.size > 12 * 1024 * 1024) throw new Error("A photo is too large to send. Please choose a smaller one.");
+      const ext = (file.name.split(".").pop() || "img").toLowerCase().slice(0, 5);
+      return { type: file.type || "application/octet-stream", ext, data: await fileToBase64(file) };
+    }
+  }
+
+  /* ---------- submit ---------- */
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    clearStatus();
+
+    const name = $("name").value.trim();
+    const memory = $("memory").value.trim();
+    if (!name) { showError("Please add your name."); $("name").focus(); return; }
+    if (!memory) { showError("Please write a story or memory before sending."); $("memory").focus(); return; }
+    if (!connected) { showError("Preview mode: not connected to the spreadsheet yet."); return; }
+
+    $("submit").disabled = true;
+    try {
+      const body = new URLSearchParams({
+        name,
+        relationship: $("relationship").value.trim(),
+        memory,
+        email: $("email").value.trim(),
+        book: $("book").checked ? "yes" : "no",
+        website: $("website").value,
+        photoCount: String(photos.length)
+      });
+      if (photos.length) status.textContent = "Preparing photos…";
+      for (let i = 0; i < photos.length; i++) {
+        const p = await preparePhoto(photos[i]);
+        body.append("photo" + i, p.data);
+        body.append("photo" + i + "type", p.type);
+        body.append("photo" + i + "ext", p.ext);
+      }
+      status.textContent = photos.length ? "Sending… photos can take a minute." : "Sending…";
+
+      // Apps Script doesn't send CORS headers, so the reply can't be read.
+      // A completed request means Google received it.
+      await fetch(CONFIG.scriptUrl.trim(), { method: "POST", mode: "no-cors", body });
+
+      clearDraft();
+      $("form").reset();
+      $("book").checked = true;
+      photos = [];
+      renderThumbs();
+      clearStatus();
+      $("formCard").hidden = true;
+      $("thanks").hidden = false;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (e) {
+      showError(e && e.message && e.message.startsWith("A photo")
+        ? e.message
+        : "That didn't go through. Please check your connection and try again. Your words are still here.");
+    } finally {
+      $("submit").disabled = false;
+    }
+  });
+
+  function showError(msg) { status.textContent = msg; status.classList.add("error"); }
+  function clearStatus() { status.textContent = ""; status.classList.remove("error"); }
+
+  $("another").addEventListener("click", () => {
+    $("thanks").hidden = true;
+    $("formCard").hidden = false;
+    $("name").focus();
+  });
+</script>
+</body>
+</html>
